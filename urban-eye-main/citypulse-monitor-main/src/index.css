@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 50% 7%;
+    --foreground: 190 100% 95%;
+
+    --card: 222 45% 10%;
+    --card-foreground: 190 100% 95%;
+
+    --popover: 222 45% 10%;
+    --popover-foreground: 190 100% 95%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 50% 7%;
+
+    --secondary: 222 30% 18%;
+    --secondary-foreground: 190 100% 85%;
+
+    --muted: 222 30% 15%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 187 100% 50%;
+    --accent-foreground: 222 50% 7%;
+
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 45 100% 55%;
+    --warning-foreground: 222 50% 7%;
+
+    --success: 145 70% 45%;
+    --success-foreground: 222 50% 7%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 18%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 50% 5%;
+    --sidebar-foreground: 190 100% 90%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 222 50% 7%;
+    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent-foreground: 190 100% 90%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 187 100% 50%;
+
+    --gradient-cyan: linear-gradient(135deg, hsl(187 100% 50%), hsl(200 100% 60%));
+    --gradient-dark: linear-gradient(180deg, hsl(222 50% 10%), hsl(222 50% 5%));
+    --shadow-cyan: 0 0 20px hsl(187 100% 50% / 0.3);
+    --shadow-cyan-lg: 0 0 40px hsl(187 100% 50% / 0.2), 0 0 80px hsl(187 100% 50% / 0.1);
+    --glow-cyan: 0 0 10px hsl(187 100% 50% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .glow-text {
+    text-shadow: 0 0 10px hsl(187 100% 50% / 0.5), 0 0 20px hsl(187 100% 50% / 0.3);
+  }
+
+  .glow-border {
+    box-shadow: inset 0 0 0 1px hsl(187 100% 50% / 0.3), 0 0 15px hsl(187 100% 50% / 0.1);
+  }
+
+  .glow-card {
+    background: hsl(222 45% 10%);
+    border: 1px solid hsl(187 100% 50% / 0.2);
+    box-shadow: 0 0 20px hsl(187 100% 50% / 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .glow-card:hover {
+    border-color: hsl(187 100% 50% / 0.4);
+    box-shadow: 0 0 30px hsl(187 100% 50% / 0.1);
+  }
+
+  .scan-line {
+    background: linear-gradient(
+      transparent 0%,
+      hsl(187 100% 50% / 0.03) 50%,
+      transparent 100%
+    );
+    animation: scan 4s linear infinite;
+  }
+
+  .pulse-dot {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .blink-red {
+    animation: blink-red 1s ease-in-out infinite;
+  }
+
+  .blink-yellow {
+    animation: blink-yellow 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px hsl(187 100% 50% / 0.5); }
+  50% { box-shadow: 0 0 20px hsl(187 100% 50% / 0.8), 0 0 40px hsl(187 100% 50% / 0.4); }
+}
+
+@keyframes blink-red {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px hsl(0 80% 55% / 0.8); }
+  50% { opacity: 0.4; box-shadow: 0 0 25px hsl(0 80% 55% / 1); }
+}
+
+@keyframes blink-yellow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px hsl(45 100% 55% / 0.6); }
+  50% { opacity: 0.6; box-shadow: 0 0 20px hsl(45 100% 55% / 0.8); }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: hsl(222 50% 7%) !important;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.6) contrast(1.2) saturate(0.8) hue-rotate(180deg) invert(1);
+}
+
+.leaflet-control-zoom a {
+  background: hsl(222 45% 12%) !important;
+  color: hsl(187 100% 50%) !important;
+  border-color: hsl(187 100% 50% / 0.3) !important;
+}
+
+.leaflet-control-attribution {
+  background: hsl(222 45% 10% / 0.8) !important;
+  color: hsl(215 20% 55%) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: hsl(222 45% 10%) !important;
+  color: hsl(190 100% 95%) !important;
+  border: 1px solid hsl(187 100% 50% / 0.3) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 0 20px hsl(187 100% 50% / 0.15) !important;
+}
+
+.leaflet-popup-tip {
+  background: hsl(222 45% 10%) !important;
+  border: 1px solid hsl(187 100% 50% / 0.3) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(222 50% 7%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(187 100% 50% / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(187 100% 50% / 0.5);
+}
